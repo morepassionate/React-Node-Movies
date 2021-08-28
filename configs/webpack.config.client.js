@@ -44,6 +44,7 @@ let commonConfig = {
       rules.client.fonts
     ]
   },
+  stats: 'minimal',
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
@@ -78,8 +79,9 @@ const devConfig = {
   devServer: {
     port: envConfig.PORT_CLIENT,
     historyApiFallback: true,
-    writeToDisk: true,
-    stats: 'minimal'
+    devMiddleware: {
+      writeToDisk: true
+    },
   },
   module: {
     rules: [
@@ -90,7 +92,6 @@ const devConfig = {
 
 const prodConfig = {
   mode: 'production',
-  stats: 'minimal',
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
