@@ -59,15 +59,46 @@ There are some environment variables with default values stored in `/configs/env
   <summary>Variables list</summary>
 <br />
 
-| Variable         | Default            | Description                                                      
+**Required** (they haven't default values)
+
+For fetching movies data you should register account at [TMDb](https://www.themoviedb.org/signup) and use your own [API Read Access Token](https://developers.themoviedb.org/3/getting-started/authentication#bearer-token) or [API key](https://developers.themoviedb.org/3/getting-started/authentication#api-key).
+
+| Variable         | Description                                                      
+| ---------------- |------------------ |
+| `TMDB_API_ACCESS_TOKEN` | *TMDb API Read Access Token* value (authentication by Bearer Token in `Authorization` header). Also, for this type of authentication you should set env variable `TMDB_API_V4_AUTHENTICATION=1` (default value) |
+
+or
+
+| Variable         | Description                                                      
+| ---------------- |------------------ |
+| `TMDB_API_KEY` | *TMDb API key* value (authentication by `api_key` query string parameter). Also, for this type of authentication you should set env variable `TMDB_API_V4_AUTHENTICATION=0` |
+
+Steps for getting TMDb API to work in app:
+1) Create `.env` file at the root folder (example of `.env` file you could find in `/configs/env/.env.defaults`).
+2) Put in env variables with values depends on authentication method that you choose.
+
+For example, your `.env` file should look like so (if you want to authenticate by *TMDb API Read Access Token*):
+```
+TMDB_API_ACCESS_TOKEN=put_your_api_access_token_here
+TMDB_API_V4_AUTHENTICATION=1
+```
+or so (if you want to authenticate by *TMDb API key*):
+```
+TMDB_API_KEY=put_your_api_key_here
+TMDB_API_V4_AUTHENTICATION=0
+```
+
+**Not required** (they have default values)
+
+| Variable         | Default value      | Description                                                      
 | ---------------- | ------------------ |------------------ |
-| `TMDB_API_KEY` | none | Your TMDb API key, used by internal module `API.js` for fetching movies data |
-| `TMDB_API_HOST` | https://api.tmdb.org/3 | TMDb v3 API host, used by internal module `API.js` for fetching movies data |
-| `TMDB_API_REGION` | US | TMDb API region paramater will act as a filter to search for and display matching release date information. This parameter is expected to be an [ISO-3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.|
-| `PORT_CLIENT` | `8080` | Port used by webpack-dev-server with client build |
-| `PORT_SERVER` | `8081` | Port used by express for nodemon/production modes |
-| `RENDERING` | `client` | Application rendering type. Available values: `client` or `server` |
-| `DEBUG_MODE` | `1` | Debug mode. Available values: `0` or `1`. Enables Express log with `morgan` logger and Redux log with `redux-logger` |
+| `TMDB_API_V4_AUTHENTICATION` | `1` | Flag for using [TMDb API v4 authentication method](https://developers.themoviedb.org/4/getting-started/authorization). Available values: `0` or `1`. Set it to `0` and add `TMDB_API_KEY` env variable if you want to use [TMDb API key](https://developers.themoviedb.org/3/getting-started/authentication#api-key) authentication instead of [TMDb API Read Access Token](https://developers.themoviedb.org/3/getting-started/authentication#bearer-token).|
+| `TMDB_API_HOST` | `https://api.tmdb.org/3` | TMDb API host address. |
+| `TMDB_API_REGION` | `US` | TMDb API region parameter will act as a filter to search for and display matching release date information. This parameter is expected to be an [ISO-3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.|
+| `PORT_CLIENT` | `8080` | Port used by `webpack-dev-server` for client-side development mode. |
+| `PORT_SERVER` | `8081` | Port used by `express` for server-side development or production modes. |
+| `RENDERING` | `client` | Application rendering type. Available values: `client` or `server`. |
+| `DEBUG_MODE` | `1` | Debug mode. Available values: `0` or `1`. Enables Express logs with `morgan` logger and Redux logs with `redux-logger`. |
 </details>
 
 ### NPM scripts
@@ -81,7 +112,7 @@ There are some environment variables with default values stored in `/configs/env
 
 Install dependencies via npm.
 
-> **Note**: if you want to clone this app and use it by yourself, you should register account at [TMDb](https://www.themoviedb.org/signup) and use your own [TMDb API key](https://developers.themoviedb.org/3/getting-started/introduction). For getting API to work you should create `.env` file at the root folder and put in `TMDB_API_KEY` variable with your TMDb API key as value. Example of `.env` file you could find in `/configs/env/.env.defaults` file.
+> **Note**: if you want to fetch data from TMDb API, you should set up required [environment variables](#environment-variables).
 
 ---
 
@@ -94,14 +125,14 @@ Install dependencies via npm.
 
 **Command**: `npm run dev:client` or shorthand `npm run dev`
 
-Run client-side React app by Webpack Dev Server with HMR *(by default available on [localhost:8080](http://localhost:8080))*. 
+Run client-side React app by `webpack-dev-server` with HMR *(by default available at [localhost:8080](http://localhost:8080))*. 
 > **Note**: If your changes affects only client-side, running this script will be enough for you.
 
 <br />
 
 **Command**: `npm run dev:server`
 
-Run server-side Express app by Nodemon tool for hosting `/dist/client/` folder *(by default available on [localhost:8081](http://localhost:8081))*. 
+Run server-side Express app by `nodemon-webpack-plugin` to host `/dist/client/` folder *(by default available at [localhost:8081](http://localhost:8081))*. 
 > **Note**: This script useful if you want to change server-side behavior or work with client-side as Express-hosted app.
 
 ---
@@ -146,7 +177,7 @@ Run Cypress tests to completion.
 
 **Command**: `npm test`
 
-Start Webpack Dev Server, wait for a url to respond, then run Cypress tests. When the test process exits, shut down Webpack Dev Server.
+Start `webpack-dev-server`, wait for a url to respond, then run Cypress tests. When the test process exits, shut down `webpack-dev-server`.
 
 ---
 
@@ -189,8 +220,8 @@ And that's without even mentioning the possible PWA techniques!
   - [x] HTTP headers with Cache-Control
 
 ##### Bundle
-  - [x] Minified
-  - [x] Gzipped
+  - [x] Minification
+  - [x] Gzipping
   - [ ] Tree-shaking
   - [ ] Code-splitting
 
