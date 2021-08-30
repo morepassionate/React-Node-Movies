@@ -14,7 +14,7 @@ const envConfig = require('./env/env-config');
 const aliases = require('./webpack-helpers/resolve-alias');
 const rules = require('./webpack-helpers/module-rules');
 const splitChunks = require('./webpack-helpers/optimization-splitChunks');
-const getIndexTemplate = require('./index.template.js');
+const getIndexTemplate = require('./index.template');
 const GenerateAssetPlugin = require('./webpack-helpers/generate-asset-plugin');
 
 const SRC_PATH = path.resolve(__dirname, '../src');
