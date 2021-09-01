@@ -69,20 +69,18 @@ const client = {
   images: {
     test: regexes.images,
     exclude: /assets[\\/]fonts/,
-    loader: 'file-loader',
-    options: {
-      name: '[name].[ext]',
-      outputPath: 'assets/img'
-    },
+    type: 'asset/resource',
+    generator: {
+      filename: 'assets/img/[name][ext]'
+    }
   },
   fonts: {
     test: regexes.fonts,
     exclude: /assets[\\/]img/,
-    loader: 'file-loader',
-    options: {
-      name: '[name].[ext]',
-      outputPath: 'assets/fonts'
-    },
+    type: 'asset/resource',
+    generator: {
+      filename: 'assets/fonts/[name][ext]'
+    }
   },
   css(params = {}) {
     return {
@@ -100,17 +98,17 @@ const server = {
   imagesByUrl: {
     test: regexes.images,
     exclude: /assets[\\/]fonts/,
-    use: ['url-loader']
+    type: 'asset/inline'
   },
   fontsByUrl: {
     test: regexes.fonts,
     exclude: /assets[\\/]img/,
-    use: ['url-loader']
+    type: 'asset/inline'
   },
   cssByUrl: {
     test: regexes.css,
     exclude: regexes.cssModules,
-    use: ['url-loader']
+    type: 'asset/inline'
   },
   cssModules() {
     return {
