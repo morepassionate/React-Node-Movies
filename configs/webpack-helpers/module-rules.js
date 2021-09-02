@@ -54,13 +54,10 @@ const styling = {
   },
 
   styleLoader(params = {}) {
-    const { extract = false, publicPath = '' } = params;
+    const { extract = false } = params;
 
     return extract
-      ? {
-        loader: MiniCssExtractPlugin.loader,
-        options: { publicPath },
-      }
+      ? MiniCssExtractPlugin.loader
       : 'style-loader';
   },
 };

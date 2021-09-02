@@ -99,10 +99,7 @@ const prodConfig = {
   },
   module: {
     rules: [
-      rules.client.css({
-        extract: true,
-        publicPath: '../'
-      })
+      rules.client.css({ extract: true })
     ]
   },
   plugins: [
