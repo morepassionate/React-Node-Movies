@@ -8,6 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const pug = require('pug');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 // internal confuguration modules
 const envConfig = require('./env/env-config');
@@ -111,6 +112,12 @@ const prodConfig = {
     })
   ]
 };
+
+if (process.env.ANALYZE === 'true') {
+  prodConfig.plugins.push(new BundleAnalyzerPlugin({
+    analyzerPort: envConfig.PORT_ANALYZER
+  }));
+}
 
 const ssrConfig = {
   plugins: [

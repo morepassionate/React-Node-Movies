@@ -97,6 +97,7 @@ TMDB_API_V4_AUTHENTICATION=0
 | `TMDB_API_REGION` | `US` | TMDb API region parameter will act as a filter to search for and display matching release date information. This parameter is expected to be an [ISO-3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code.|
 | `PORT_CLIENT` | `8080` | Port used by `webpack-dev-server` for client-side development mode. |
 | `PORT_SERVER` | `8081` | Port used by `express` for server-side development or production modes. |
+| `PORT_ANALYZER` | `8888` | Port used by `webpack-bundle-analyzer` to visualize size of webpack output files. |
 | `RENDERING` | `client` | Application rendering type. Available values: `client` or `server`. |
 | `DEBUG_MODE` | `1` | Debug mode. Available values: `0` or `1`. Enables Express logs with `morgan` logger and Redux logs with `redux-logger`. |
 </details>
@@ -155,6 +156,23 @@ Build client and server for production.
 Run bundled Express server for hosting `/dist/client/` folder.
 
 ---
+
+</details>
+
+<details> 
+  <summary>Bundle analyzing</summary>
+
+<br />
+
+**Command**: `npm run analyze:client`
+
+Run Webpack Bundle Analyzer: HTTP server to show client-side bundle report with visualized size of webpack output files.
+
+<br />
+
+**Command**: `npm run analyze:server`
+
+Run Webpack Bundle Analyzer: HTTP server to show server-side bundle report with visualized size of webpack output files.
 
 </details>
 

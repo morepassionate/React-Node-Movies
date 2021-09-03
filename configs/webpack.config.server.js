@@ -6,8 +6,10 @@ const { merge } = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 // internal confuguration modules
+const envConfig = require('./env/env-config');
 const aliases = require('./webpack-helpers/resolve-alias');
 const rules = require('./webpack-helpers/module-rules');
 
@@ -65,6 +67,14 @@ const devConfig = {
 const prodConfig = {
   mode: 'production'
 };
+
+if (process.env.ANALYZE === 'true') {
+  prodConfig.plugins = [
+    new BundleAnalyzerPlugin({
+      analyzerPort: envConfig.PORT_ANALYZER
+    })
+  ];
+}
 
 module.exports = () => {
   switch (process.env.NODE_ENV) {
