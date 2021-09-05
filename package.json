@@ -17,7 +17,8 @@
     "analyze:client": "cross-env ANALYZE=true npm run build:client",
     "analyze:server": "cross-env ANALYZE=true npm run build:server",
     "build": "npm run build:client && npm run build:server",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "prod": "npm run build && npm start"
   },
   "repository": {
     "type": "git",
@@ -50,7 +51,7 @@
     "clean-webpack-plugin": "3.0.0",
     "compression-webpack-plugin": "8.0.1",
     "cross-env": "7.0.3",
-    "css-loader": "5.2.7",
+    "css-loader": "6.2.0",
     "cypress": "8.3.1",
     "eslint": "7.32.0",
     "eslint-config-airbnb-base": "14.2.1",
@@ -63,12 +64,12 @@
     "imports-loader": "3.0.0",
     "nodemon-webpack-plugin": "4.5.2",
     "sass-loader": "12.1.0",
-    "start-server-and-test": "1.13.1",
+    "start-server-and-test": "1.14.0",
     "style-loader": "3.2.1",
-    "webpack": "5.51.1",
+    "webpack": "5.52.0",
     "webpack-bundle-analyzer": "4.4.2",
     "webpack-cli": "4.8.0",
-    "webpack-dev-server": "4.0.0",
+    "webpack-dev-server": "4.1.0",
     "webpack-merge": "5.8.0",
     "webpack-node-externals": "3.0.0"
   },
