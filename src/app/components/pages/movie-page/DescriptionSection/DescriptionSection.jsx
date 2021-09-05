@@ -65,7 +65,7 @@ function DescriptionSection({ movie }) {
 
         <CrewListBlock />
 
-        {(tagline || overview) && <hr />}
+        {(tagline || overview) && <hr cls={styles.hr} />}
 
         <Row cls={styles.tagline}>
           {tagline}
