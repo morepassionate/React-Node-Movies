@@ -36,7 +36,8 @@ module.exports = {
     '**/*.scss',
     '**/*.json',
     '**/*.md',
-    'LICENSE'
+    'LICENSE',
+    'Dockerfile'
   ],
   extends: [
     'eslint:recommended',
