@@ -1,5 +1,5 @@
-@import '@/assets/css/theme/colors';
-@import '@/assets/css/theme/mixins';
+@import '/src/assets/styles/theme/colors';
+@import '/src/assets/styles/theme/mixins';
 
 .player {
   :global(.react-player__preview) {

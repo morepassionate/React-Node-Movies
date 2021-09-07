@@ -1,7 +1,7 @@
-@import '@/assets/css/theme/breakpoints';
-@import '@/assets/css/theme/variables';
-@import '@/assets/css/theme/colors';
-@import '@/assets/css/theme/mixins';
+@import '/src/assets/styles/theme/breakpoints';
+@import '/src/assets/styles/theme/variables';
+@import '/src/assets/styles/theme/colors';
+@import '/src/assets/styles/theme/mixins';
 
 .card {
   display: flex;

@@ -1,6 +1,6 @@
-@import '@/assets/css/theme/breakpoints';
-@import '@/assets/css/theme/animations';
-@import '@/assets/css/theme/colors';
+@import '/src/assets/styles/theme/breakpoints';
+@import '/src/assets/styles/theme/animations';
+@import '/src/assets/styles/theme/colors';
 
 .poster {
   border: 1px solid $black_mod !important;

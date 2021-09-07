@@ -1,7 +1,7 @@
-@import '@/assets/css/theme/breakpoints';
-@import '@/assets/css/theme/animations';
-@import '@/assets/css/theme/colors';
-@import '@/assets/css/theme/variables';
+@import '/src/assets/styles/theme/breakpoints';
+@import '/src/assets/styles/theme/animations';
+@import '/src/assets/styles/theme/colors';
+@import '/src/assets/styles/theme/variables';
 
 @mixin image-size($mod: 0) {
   width: 185px + $mod;

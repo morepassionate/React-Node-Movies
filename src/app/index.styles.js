@@ -1,11 +1,11 @@
 // App fonts
-import '@/assets/css/fonts.scss';
+import '@/assets/styles/fonts.scss';
 
 // CSS Framework (first, for easy overriding if need to)
-import '@/assets/css/bootstrap/index.scss';
+import '@/assets/styles/bootstrap/index.scss';
 
 // Common app styles
-import '@/assets/css/common.scss';
+import '@/assets/styles/common.scss';
 
 // Misc. styles for vendor packages
 // eslint-disable-next-line import/no-extraneous-dependencies
