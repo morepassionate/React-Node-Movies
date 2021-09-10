@@ -20,6 +20,8 @@ COPY [".babelrc.js", ".env", "./"]
 COPY configs ./configs/
 COPY src ./src/
 
+ENV RENDERING=server 
+
 RUN npm run build
 
 COPY . .
