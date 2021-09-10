@@ -7,7 +7,7 @@ WORKDIR /home/
 
 COPY ["package.json", "package-lock.json", ".npmrc", "./"]
 
-RUN CYPRESS_INSTALL_BINARY=0 npm i
+RUN npm ci --production && npm cache clean --force
 
 #-------------
 # Stage 2: app
