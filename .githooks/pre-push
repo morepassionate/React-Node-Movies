@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# The hook should set Heroku config variables.
+# Current usage makes available to use 
+# git hash value in Heroku runtime mode
+
+url="$2"
+
+if [[ $url =~ heroku ]] ; then
+	echo ------------------------
+	echo git heroku pre-push hook
+	echo ------------------------
+    hash_variable=SOURCE_HASH
+    hash_value=$(git rev-parse HEAD)
+    echo Setting $hash_variable to $hash_value
+    heroku config:set $hash_variable=$hash_value
+	echo ------------------------
+fi
+
+exit 0
