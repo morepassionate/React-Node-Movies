@@ -20,8 +20,11 @@ COPY [".babelrc.js", ".env", "./"]
 COPY configs ./configs/
 COPY src ./src/
 
+ARG SOURCE_HASH
+ENV SOURCE_HASH=$SOURCE_HASH
 ENV RENDERING=server 
 
+RUN echo "SOURCE_HASH: ${SOURCE_HASH}"
 RUN npm run build
 
 COPY . .
