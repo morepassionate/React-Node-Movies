@@ -2,7 +2,6 @@
 @import '/src/assets/styles/theme/colors';
 
 .wrapper {
-  display: inline;
   color: $lightgray;
 
   @media (max-width: $bp-small) {

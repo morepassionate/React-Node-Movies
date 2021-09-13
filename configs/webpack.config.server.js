@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 // webpack plugins and common modules
 const nodeExternals = require('webpack-node-externals');
@@ -49,6 +50,14 @@ const commonConfig = {
         cleanAfterEveryBuildPatterns: ['*server.js']
       }
     ),
+    /*
+    We should manually define variables, which are not from ".env" file.
+    Other variables in "envConfig" comes from ".env file".
+    They will load to "process.env" automatically.
+    */
+    new webpack.DefinePlugin({
+      'process.env.APP_REVISION': JSON.stringify(envConfig.APP_REVISION)
+    }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].css'
     }),

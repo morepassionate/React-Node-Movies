@@ -61,6 +61,7 @@ const listener = app.listen(PORT, (err) => {
   if (err) throw new Error('Express app port listening error:', err);
 
   /* eslint-disable no-console */
-  console.log('\n---Express app is listening on:', listener.address());
+  console.log('\x1b[32m%s\x1b[0m', '\nExpress app started:', listener.address());
+  console.log('--- APP_REVISION:', process.env.APP_REVISION);
   /* eslint-disable no-console */
 });
