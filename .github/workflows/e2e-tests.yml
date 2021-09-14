@@ -3,45 +3,24 @@ on:
   push:
     branches:
       - master
-      - DEV
-      - '*--CI'
+      - develop
+      - "*--CI"
 
 jobs:
-  e2e-cypress-windows-latest:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v1
-      - name: Run cypress
-        uses: cypress-io/github-action@v2
-        env:
-          TMDB_API_ACCESS_TOKEN: ${{ secrets.WORKFLOW_TMDB_API_ACCESS_TOKEN }}
-          TMDB_API_KEY: ${{ secrets.WORKFLOW_TMDB_API_KEY }}
-        with:
-          command: npm test
+  cypress-tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
-  e2e-cypress-ubuntu-latest:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v1
-      - name: Run cypress
-        uses: cypress-io/github-action@v2
-        env:
-          TMDB_API_ACCESS_TOKEN: ${{ secrets.WORKFLOW_TMDB_API_ACCESS_TOKEN }}
-          TMDB_API_KEY: ${{ secrets.WORKFLOW_TMDB_API_KEY }}
-        with:
-          command: npm test
+    env:
+      TMDB_API_ACCESS_TOKEN: ${{ secrets.WORKFLOW_TMDB_API_ACCESS_TOKEN }}
+      TMDB_API_KEY: ${{ secrets.WORKFLOW_TMDB_API_KEY }}
 
-  e2e-cypress-macos-latest:
-    runs-on: macos-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: Run cypress
         uses: cypress-io/github-action@v2
-        env:
-          TMDB_API_ACCESS_TOKEN: ${{ secrets.WORKFLOW_TMDB_API_ACCESS_TOKEN }}
-          TMDB_API_KEY: ${{ secrets.WORKFLOW_TMDB_API_KEY }}
         with:
           command: npm test
