@@ -16,7 +16,7 @@ FROM dependencies
 
 WORKDIR /home/
 
-COPY [".babelrc.js", ".env", "./"]
+COPY [".babelrc.js", "./"]
 COPY configs ./configs/
 COPY src ./src/
 
