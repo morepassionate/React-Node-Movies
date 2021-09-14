@@ -2,17 +2,16 @@
 
 <p align="center">
   <a href="#-what-is-it">What is it</a> •
-  <a href="#-functionality">Functionality</a> •
+  <a href="#-highlights">Highlights</a> •
   <a href="#-technologies">Technologies</a> •
   <a href="#-how-to-use">How to use</a> •
   <a href="#-details">Details</a> •
-  <a href="#-roadmap">Roadmap</a> •
   <a href="#-about">About</a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/nk11dev/movies/actions?query=workflow%3Ae2e-tests">
-    <img alt="E2E-tests status" src="https://github.com/nk11dev/movies/workflows/e2e-tests/badge.svg">
+  <a href="https://github.com/nk11dev/movies/actions/workflows/ci-cd.yml">
+    <img alt="CI/CD status" src="https://github.com/nk11dev/movies/actions/workflows/ci-cd.yml/badge.svg">
   </a>
   <a href="https://stats.uptimerobot.com/qLDMxHOKQy">
     <img alt="Uptime Robot status" src="https://img.shields.io/uptimerobot/status/m787399188-cfa78f70cbf831fbe3e2876d?label=website">
@@ -30,7 +29,7 @@ Movies application utilizes real movies data API provided by [The Movie Database
 
 <img src="src/assets/img/readme-images/demo.gif">
 
-## 🎥 Functionality
+## 🎥 Highlights
 - Filter movies by category: "Now playing", "Popular", "Top rated" and "Upcoming"
 - Search movies
 - Switch localizations
@@ -252,14 +251,6 @@ And that's without even mentioning the possible PWA techniques!
 ##### Images
   - [x] Lazy loading
 </details> 
-
-## 🐾 Roadmap
-- [ ] QA: write more e2e tests, add unit tests (Jest);
-- [ ] CI/CD: add docker images as isolated environment for application running and testing;
-- [ ] Technologies: static type checking (Typescript), authorization (Firebase);
-- [ ] Application features: users wishlist, genres filter;
-
-🎓 Article: step by step tutorial with best practices about "How to code application like this".
 
 ## ✌️ About
 **Author**: [nk11dev](https://github.com/nk11dev)<br />
