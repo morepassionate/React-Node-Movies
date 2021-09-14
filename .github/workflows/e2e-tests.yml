@@ -6,21 +6,41 @@ on:
       - develop
       - "*--CI"
 
+env:
+  TMDB_API_ACCESS_TOKEN: ${{ secrets.WORKFLOW_TMDB_API_ACCESS_TOKEN }}
+  TMDB_API_KEY: ${{ secrets.WORKFLOW_TMDB_API_KEY }}
+
 jobs:
-  cypress-tests:
+  build-and-test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
 
-    env:
-      TMDB_API_ACCESS_TOKEN: ${{ secrets.WORKFLOW_TMDB_API_ACCESS_TOKEN }}
-      TMDB_API_KEY: ${{ secrets.WORKFLOW_TMDB_API_KEY }}
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
       - name: Run cypress
         uses: cypress-io/github-action@v2
         with:
           command: npm test
+
+  deploy-to-heroku:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build, Push and Release a Docker container to Heroku
+        uses: gonuit/heroku-docker-deploy@v1.3.3
+        with:
+          email: ${{ secrets.HEROKU_EMAIL }}
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          dockerfile_directory: ./
+          dockerfile_name: Dockerfile
+          docker_options: "--build-arg SOURCE_HASH=${{github.sha}}"
+          process_type: web
