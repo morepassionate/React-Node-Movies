@@ -10,6 +10,7 @@ on:
 env:
   TMDB_API_ACCESS_TOKEN: ${{ secrets.TMDB_API_ACCESS_TOKEN }}
   TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+  TMDB_API_REGION: ${{ secrets.TMDB_API_REGION }}
 
 jobs:
   tests-e2e:
@@ -44,5 +45,5 @@ jobs:
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
           dockerfile_directory: ./
           dockerfile_name: Dockerfile
-          docker_options: "--build-arg SOURCE_HASH=${{github.sha}}"
+          docker_options: "--build-arg SOURCE_HASH=${{ github.sha }} --build-arg TMDB_API_ACCESS_TOKEN=${{ secrets.TMDB_API_ACCESS_TOKEN }} --build-arg TMDB_API_REGION=${{ secrets.TMDB_API_REGION }}"
           process_type: web
