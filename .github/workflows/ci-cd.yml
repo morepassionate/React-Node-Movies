@@ -1,4 +1,4 @@
-name: e2e-tests
+name: CI/CD
 on:
   push:
     branches:
@@ -7,11 +7,11 @@ on:
       - "*--CI"
 
 env:
-  TMDB_API_ACCESS_TOKEN: ${{ secrets.WORKFLOW_TMDB_API_ACCESS_TOKEN }}
-  TMDB_API_KEY: ${{ secrets.WORKFLOW_TMDB_API_KEY }}
+  TMDB_API_ACCESS_TOKEN: ${{ secrets.TMDB_API_ACCESS_TOKEN }}
+  TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
 
 jobs:
-  build-and-test:
+  tests-e2e:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -28,7 +28,7 @@ jobs:
 
   deploy-to-heroku:
     runs-on: ubuntu-latest
-    needs: build-and-test
+    needs: tests-e2e
 
     steps:
       - name: Checkout repository
