@@ -38,7 +38,7 @@ module.exports = {
     'react/jsx-no-script-url': 2,
     'react/jsx-no-target-blank': 2,
     'react/jsx-no-undef': 2,
-    'react/jsx-one-expression-per-line': [2, {
+    'react/jsx-one-expression-per-line': [1, {
       'allow': 'single-child'
     }],
     'react/jsx-pascal-case': 2,
