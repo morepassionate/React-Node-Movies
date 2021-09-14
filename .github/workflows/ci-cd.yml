@@ -5,6 +5,7 @@ on:
       - master
       - develop
       - "*--CI"
+      - "*--CD"
 
 env:
   TMDB_API_ACCESS_TOKEN: ${{ secrets.TMDB_API_ACCESS_TOKEN }}
@@ -29,6 +30,7 @@ jobs:
   deploy-to-heroku:
     runs-on: ubuntu-latest
     needs: tests-e2e
+    if: contains(github.ref, 'refs/heads/master') || endsWith(github.ref, '--CD')
 
     steps:
       - name: Checkout repository
