@@ -12,7 +12,8 @@ const SOURCE_HASH = require('./source-hash');
 
 const APP_REVISION = [
   env.npm_package_version,
-  SOURCE_HASH
+  SOURCE_HASH,
+  env.SOURCE_NAME
 ].filter(Boolean).join('-');
 
 const envConfig = {
