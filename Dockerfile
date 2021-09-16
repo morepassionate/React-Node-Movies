@@ -3,9 +3,9 @@
 #----------------------
 FROM node:12.22-alpine3.14 AS dependencies
 
+RUN apk add dumb-init
 WORKDIR /usr/app
 COPY ["package.json", "package-lock.json", ".npmrc", "./"]
-
 RUN npm ci --production && npm cache clean --force
 
 #-------------
@@ -34,4 +34,4 @@ RUN npm run build
 EXPOSE 8081
 USER node
 
-CMD [ "node", "./dist/server.js" ]
+CMD ["dumb-init", "node", "./dist/server.js"]
