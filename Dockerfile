@@ -3,8 +3,7 @@
 #----------------------
 FROM node:12.22-alpine3.14 AS dependencies
 
-WORKDIR /home/
-
+WORKDIR /usr/app
 COPY ["package.json", "package-lock.json", ".npmrc", "./"]
 
 RUN npm ci --production && npm cache clean --force
@@ -14,31 +13,25 @@ RUN npm ci --production && npm cache clean --force
 #-------------
 FROM dependencies
 
-WORKDIR /home/
-
+WORKDIR /usr/app
 COPY [".babelrc.js", "./"]
 COPY configs ./configs/
 COPY src ./src/
 
 ARG SOURCE_HASH
 ENV SOURCE_HASH=$SOURCE_HASH
-
 ARG SOURCE_NAME
 ENV SOURCE_NAME=$SOURCE_NAME
-
 ARG TMDB_API_ACCESS_TOKEN
 ENV TMDB_API_ACCESS_TOKEN=$TMDB_API_ACCESS_TOKEN
-
 ARG TMDB_API_REGION
 ENV TMDB_API_REGION=$TMDB_API_REGION
-
 ENV RENDERING=server 
 
 RUN echo "SOURCE_HASH: ${SOURCE_HASH}"
 RUN echo "SOURCE_NAME: ${SOURCE_NAME}"
 RUN npm run build
-
-COPY . .
-
 EXPOSE 8081
-CMD [ "npm", "start" ]
+USER node
+
+CMD [ "node", "./dist/server.js" ]
