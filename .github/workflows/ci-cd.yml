@@ -14,6 +14,8 @@ env:
 jobs:
   tests-e2e:
     runs-on: ${{ matrix.os }}
+    env:
+      CYPRESS_VIDEO: false
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
