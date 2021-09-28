@@ -27,9 +27,7 @@ const envConfig = {
 };
 
 /* eslint-disable no-console */
-if (envConfig.DEBUG_MODE === '1') {
-  console.log('\n--- envConfig:', envConfig, '\n');
-}
+console.log('\n--- envConfig:', envConfig, '\n');
 /* eslint-disable no-console */
 
 module.exports = envConfig;
