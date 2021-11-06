@@ -4,8 +4,18 @@ const dotenv = require('dotenv-defaults');
 const config = dotenv.config({ defaults: path.resolve('./configs/env/.env.defaults') }).parsed;
 const { env } = process;
 
+const styles = {
+  yellow: '\x1b[33m%s\x1b[0m',
+  cyan: '\x1b[36m%s\x1b[0m'
+};
+
 /* eslint-disable no-console */
-console.log('\x1b[36m%s\x1b[0m', `script: "${env.npm_lifecycle_event}"`);
+console.log(styles.yellow, `platform: "${process.platform}"`);
+console.log(styles.yellow, `node version: "${process.versions.node}"`);
+
+console.log(styles.cyan, env.npm_lifecycle_script
+  ? `script: "${env.npm_lifecycle_script}"`
+  : `argv: "${process.argv}"`);
 /* eslint-disable no-console */
 
 const SOURCE_HASH = require('./source-hash');

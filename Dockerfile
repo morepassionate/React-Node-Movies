@@ -1,7 +1,7 @@
 #----------------------
 # Stage 1: dependencies
 #----------------------
-FROM node:12.22-alpine3.14 AS dependencies
+FROM node:16.8.0-alpine3.14 AS dependencies
 
 RUN apk add dumb-init
 WORKDIR /usr/app

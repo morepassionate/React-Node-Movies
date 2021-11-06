@@ -49,18 +49,18 @@
     "eslint-plugin-import": "2.24.2",
     "eslint-plugin-react": "7.25.1",
     "start-server-and-test": "1.14.0",
-    "webpack-dev-server": "4.1.0"
+    "webpack-dev-server": "4.4.0"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "1.2.36",
-    "@fortawesome/free-brands-svg-icons": "5.15.4",
-    "@fortawesome/free-solid-svg-icons": "5.15.4",
-    "@fortawesome/react-fontawesome": "0.1.15",
     "@babel/core": "7.15.0",
     "@babel/plugin-proposal-class-properties": "7.14.5",
     "@babel/plugin-proposal-decorators": "7.14.5",
     "@babel/preset-env": "7.15.0",
     "@babel/preset-react": "7.14.5",
+    "@fortawesome/fontawesome-svg-core": "1.2.36",
+    "@fortawesome/free-brands-svg-icons": "5.15.4",
+    "@fortawesome/free-solid-svg-icons": "5.15.4",
+    "@fortawesome/react-fontawesome": "0.1.15",
     "babel-loader": "8.2.2",
     "babel-plugin-transform-remove-console": "6.9.4",
     "bootstrap": "4.6.0",
