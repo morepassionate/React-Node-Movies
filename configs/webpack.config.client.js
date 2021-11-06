@@ -49,7 +49,8 @@ let commonConfig = {
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
-      'process.env': JSON.stringify(envConfig)
+      'process.env': JSON.stringify(envConfig),
+      '__REACT_DEVTOOLS_GLOBAL_HOOK__': '({ isDisabled: true })'
     }),
     new HtmlWebpackPlugin({
       favicon: `${SRC_PATH}/assets/img/favicon.ico`,
