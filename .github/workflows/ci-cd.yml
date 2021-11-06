@@ -10,6 +10,7 @@ on:
 env:
   TMDB_API_ACCESS_TOKEN: ${{ secrets.TMDB_API_ACCESS_TOKEN }}
   TMDB_API_REGION: ${{ secrets.TMDB_API_REGION }}
+  NODE_CUSTOM_VERSION: 16.8.0
 
 jobs:
   tests-e2e:
@@ -23,6 +24,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
+      - name: Setup Node.js version:${{ env.NODE_CUSTOM_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_CUSTOM_VERSION }}
 
       - name: Run cypress
         uses: cypress-io/github-action@v2
